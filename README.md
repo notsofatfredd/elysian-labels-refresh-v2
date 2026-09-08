@@ -1,6 +1,15 @@
 # Elysian Labels — deploy notes
 
-Static site, no build step. Edit `index.html` directly, upload via cPanel File Manager to `public_html/`.
+cPanel site with no build step. The public page is static HTML/CSS/JavaScript; `quote.php` handles quote delivery. Upload the complete `elysianlabels/` release folder via cPanel File Manager so the page and handler stay in sync.
+
+## 2026-09-08 — working quote submission
+
+- Replaced the live page's dead same-page POST and the local email-app handoff with a real same-origin `quote.php` submission to `orders@elysianlabels.co.za`.
+- Added server-side allowlists, required-field and email validation, request-size and origin checks, a hidden honeypot, repeat-send throttling, safe mail headers and honest success/failure pages.
+- Kept the form progressively enhanced: JavaScript supplies sending feedback, while the browser performs the normal POST.
+- Fixed direct `#quote` visits so the reveal system cannot leave the form invisible.
+- Removed unverified turnaround, nationwide delivery, minimum-order, sample, scheduled-supply and performance promises. The replacement copy asks for the information Elysian needs to confirm those details.
+- PHP lint and mailbox delivery must be verified on cPanel because PHP is unavailable in the local environment. A successful `mail()` return means the host accepted the message for delivery; confirm receipt in the orders inbox before calling the form production-verified.
 
 **cPanel project/folder name is `elysianlabels`** (2026-08-18, Saeed: "make sure elysian project is called elysianlabels for cpanel upload thats the company full name") — the deploy zip's internal top-level folder and the zip filename itself (`elysianlabels-cpanel-YYYY-MM-DD.zip`) both use this from here on, not the shorter `elysian` used in this repo's own folder name (git repo/local working-copy naming is unaffected, this only applies to what actually lands on the server).
 

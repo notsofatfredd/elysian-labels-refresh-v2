@@ -102,39 +102,28 @@
   });
 })();
 
-/* Quote handoff — no backend is claimed. Build a clear email draft instead of
-   leaving the form looking live while posting to a dead hash target. */
+/* Quote submission feedback. The browser still performs a normal same-origin
+   POST so the form remains usable if JavaScript is unavailable. */
 (function(){
   var form = document.querySelector('[data-quote-form]');
   var status = document.getElementById('quote-status');
   if (!form || !status) return;
+  var button = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    if (!form.checkValidity()){
-      form.reportValidity();
-      status.textContent = 'Please complete the required fields before continuing.';
-      return;
+  form.addEventListener('submit', function(){
+    status.textContent = 'Sending your quote request…';
+    if (button){
+      button.disabled = true;
+      button.setAttribute('aria-disabled', 'true');
     }
+  });
 
-    var data = new FormData(form);
-    var subject = 'Quote request from ' + data.get('company');
-    var body = [
-      'Name: ' + data.get('name'),
-      'Company: ' + data.get('company'),
-      'Email: ' + data.get('email'),
-      'Phone: ' + (data.get('phone') || 'Not supplied'),
-      'Industry: ' + data.get('industry'),
-      'Label type: ' + data.get('product'),
-      '',
-      'Size, volume and conditions:',
-      data.get('detail') || 'Not supplied',
-      '',
-      'POPIA consent: Yes'
-    ].join('\n');
-
-    status.textContent = 'Opening your email app…';
-    window.location.href = 'mailto:orders@elysianlabels.co.za?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  window.addEventListener('pageshow', function(){
+    if (button){
+      button.disabled = false;
+      button.removeAttribute('aria-disabled');
+    }
+    status.textContent = '';
   });
 })();
 
@@ -144,6 +133,13 @@
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items = document.querySelectorAll('.rv');
+  var initialTarget = null;
+  if (window.location.hash){
+    try{ initialTarget = document.querySelector(window.location.hash); }catch(e){}
+  }
+  if (initialTarget){
+    initialTarget.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
 
   if (reduce || !('IntersectionObserver' in window)) {
     items.forEach(function(el){ el.classList.add('in'); });
@@ -160,4 +156,20 @@
     el.style.transitionDelay = (Math.min(i % 4, 3) * 70) + 'ms';
     io.observe(el);
   });
+
+  function revealVisible(){
+    items.forEach(function(el){
+      if (el.classList.contains('in')) return;
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0){
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  }
+
+  requestAnimationFrame(revealVisible);
+  window.addEventListener('load', revealVisible);
+  window.addEventListener('hashchange', function(){ setTimeout(revealVisible, 50); });
+  setTimeout(revealVisible, 150);
 })();
