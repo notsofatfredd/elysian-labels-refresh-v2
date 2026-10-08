@@ -689,3 +689,100 @@ ul{margin:0;padding:0;list-style:none}
 [data-csp-style="csp-mt-s6"] { margin-top: var(--s6); }
 [data-csp-style="csp-mt-s7"] { margin-top: var(--s7); }
 [data-csp-style="csp-width-full"] { width: 100%; }
+
+/* ============ 14 PRINTERS & HARDWARE ============
+   hardware.html + the homepage teaser. Product photos are manufacturer
+   cut-outs on white, so the image well stays white in both themes. */
+.nav a[aria-current="page"]::after{transform:scaleX(1)}
+
+.hw-hero{background:var(--surface)}
+.hw-hero .hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.hw-hero-lede{margin-bottom:var(--s6)}
+.hw-hero-ctas{display:flex;flex-wrap:wrap;gap:var(--s4)}
+.hw-hero-visual{
+  position:relative;background:var(--navy);border-radius:3px;overflow:hidden;
+  padding:clamp(1rem,2.5vw,1.75rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(.6rem,1.4vw,1rem);
+}
+.hw-hero-visual::before{
+  content:"";position:absolute;inset:0;
+  background-image:url('assets/elysian-pattern-bg.png');background-size:340px;
+  opacity:.14;mix-blend-mode:screen;pointer-events:none;
+}
+.hw-hero-tile{position:relative;z-index:1;background:#fff;border-radius:2px;aspect-ratio:1/1;display:flex;flex-direction:column;margin:0}
+.hw-hero-tile img{flex:1;min-height:0;width:100%;object-fit:contain;padding:10%}
+.hw-hero-tile figcaption{
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--navy);padding:0 var(--s4) var(--s3);
+}
+.hw-hero-visual .scanline{z-index:3}
+
+.hw-jump{
+  position:sticky;top:78px;z-index:80;
+  background:var(--hdr-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);
+}
+.hw-jump-in{display:flex;gap:var(--s2);align-items:center;overflow-x:auto;padding-block:var(--s3);scrollbar-width:none}
+.hw-jump-in::-webkit-scrollbar{display:none}
+.hw-jump b{font-family:var(--mono);font-size:.625rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding-right:var(--s2);white-space:nowrap}
+.hw-jump b:not(:first-child){margin-left:var(--s4);padding-left:var(--s4);border-left:1px solid var(--border)}
+.hw-jump a{
+  white-space:nowrap;font-size:.8125rem;font-weight:500;text-decoration:none;color:var(--ink);
+  padding:.4rem .8rem;border:1px solid var(--border);border-radius:2px;transition:border-color .2s var(--ease),color .2s var(--ease);
+}
+.hw-jump a:hover{border-color:var(--gold);color:var(--gold)}
+
+.hw-guide{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5)}
+.hw-guide .ind-types{margin-bottom:0}
+
+.hw-brand-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,4vw,3.5rem);align-items:end;margin-bottom:var(--s4)}
+.hw-brand-name{font-family:var(--display);font-size:clamp(3rem,7vw,5.5rem);line-height:.95;letter-spacing:-.03em}
+
+.hw-cat{padding-top:var(--s7);scroll-margin-top:150px}
+.hw-cat + .hw-cat{margin-top:var(--s7);border-top:1px solid var(--border)}
+.hw-cat-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s2) var(--s5);align-items:baseline;margin-bottom:var(--s6);max-width:60rem}
+.hw-cat-code{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;color:var(--gold);grid-row:span 2}
+.hw-cat-head h3{font-size:clamp(1.4rem,2.4vw,1.85rem)}
+.hw-cat-head p{color:var(--ink-soft);max-width:62ch}
+
+.hw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:var(--s5)}
+.hw-card{display:flex;flex-direction:column;background:var(--surface-alt);border:1px solid var(--border);border-radius:3px;overflow:hidden;transition:border-color .3s var(--ease)}
+.hw-card:hover{border-color:var(--gold)}
+.hw-img{background:#fff;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+.hw-img img{width:100%;height:100%;object-fit:contain;padding:8%}
+.hw-body{padding:var(--s5);display:flex;flex-direction:column;flex:1}
+.hw-top{display:flex;justify-content:space-between;gap:var(--s3);align-items:baseline;margin-bottom:var(--s3)}
+.hw-series{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;color:var(--gold)}
+.hw-tier{font-family:var(--mono);font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--border);border-radius:2px;padding:.15rem .45rem;white-space:nowrap}
+.hw-card h4{font-family:var(--display);font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin-bottom:var(--s3)}
+.hw-card p{font-size:.875rem;color:var(--ink-soft);margin-bottom:var(--s4)}
+.hw-card .prod-specs{margin-bottom:var(--s4)}
+.hw-ask{
+  margin-top:auto;font-family:var(--sans);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);display:inline-flex;gap:var(--s2);align-items:center;
+}
+.hw-ask:hover{color:var(--gold)}
+.hw-ask .arw{transition:transform .25s var(--ease)}
+.hw-ask:hover .arw{transform:translateX(4px)}
+
+.hw-note{font-family:var(--mono);font-size:.6875rem;letter-spacing:.04em;line-height:1.7;color:var(--muted);max-width:80ch;margin-top:var(--s7)}
+
+/* Homepage teaser */
+.hw-teaser{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.hw-teaser-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
+.hw-teaser-tile{background:var(--surface-alt);border:1px solid var(--border);border-radius:3px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:border-color .3s var(--ease)}
+.hw-teaser-tile:hover{border-color:var(--gold)}
+.hw-teaser-tile .hw-img{aspect-ratio:1/1}
+.hw-teaser-tile span{font-family:var(--mono);font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:var(--s3) var(--s4)}
+
+@media (max-width:1080px){
+  .hw-guide{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .hw-hero .hero-grid,.hw-brand-head,.hw-teaser{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .hw-guide{grid-template-columns:1fr}
+  .hw-teaser-tiles{gap:var(--s2)}
+  .hw-teaser-tile span{padding:var(--s2);font-size:.5625rem;letter-spacing:.08em}
+  .hw-cat-head{grid-template-columns:1fr}
+  .hw-cat-code{grid-row:auto}
+}

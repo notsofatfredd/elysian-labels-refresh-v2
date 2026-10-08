@@ -23,6 +23,7 @@ $products = [
     'direct-thermal' => 'Direct thermal',
     'thermal-transfer' => 'Thermal transfer',
     'custom-garment' => 'Custom garment labelling',
+    'printer-hardware' => 'Printer or hardware',
 ];
 
 function clean_line(string $value): string {

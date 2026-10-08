@@ -110,6 +110,19 @@
   if (!form || !status) return;
   var button = form.querySelector('button[type="submit"]');
 
+  /* Printer links on hardware.html arrive as ?enquiry=printer&model=…#quote.
+     Preselect the enquiry and start the detail box with the model name. */
+  try{
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('enquiry') === 'printer'){
+      var product = form.querySelector('#q-product');
+      var detail = form.querySelector('#q-detail');
+      if (product) product.value = 'printer-hardware';
+      var model = (params.get('model') || '').replace(/[^\w\s\-+\/.]/g, '').slice(0, 60);
+      if (detail && !detail.value) detail.value = model ? 'Printer: ' + model + '\n' : '';
+    }
+  }catch(e){}
+
   form.addEventListener('submit', function(){
     status.textContent = 'Sending your quote request…';
     if (button){

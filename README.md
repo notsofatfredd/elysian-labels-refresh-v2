@@ -2,6 +2,15 @@
 
 cPanel site with no build step. The public page is static HTML/CSS/JavaScript; `quote.php` handles quote delivery. Upload the complete `elysianlabels/` release folder via cPanel File Manager so the page and handler stay in sync.
 
+## 2026-10-08 — DRAFT: printers & hardware page (for Sadie's review, not live)
+
+- Sadie's 29 Sep email ("HARDWARE") asked for the Zebra and Argox printer ranges, more product detail and Argox images, with a look before it goes live. This is that draft. **Do not upload until Sadie approves.**
+- New `hardware.html`: hero, a 4-question "choosing a printer" guide (application, DT vs TT, label width, dpi, from the questions in her email), 16 Zebra and 14 Argox model cards in 7 categories with method/dpi/speed/width, a labels-and-ribbons tie-in and a spec disclaimer. 29 manufacturer product photos in `assets/hw/` (WebP, trimmed onto white 960×720).
+- Specs and names checked against zebra.com and argox.com spec pages on 2026-10-08. Name corrections applied (ZT600 → ZT6 Series ZT610/ZT620, ZT411 sits in the ZT400 Series); XM4 "metal case" dropped (Argox only states it for iX6).
+- Homepage: "Printers" nav link, a teaser section with 3 tiles linking to the page, Zebra/Argox footer links.
+- Quote form: new "Printer or hardware" option in the dropdown (label renamed "Enquiry") and in `quote.php`'s allowlist. "Ask about this model" links open `index.html?enquiry=printer&model=…#quote`, which `site.js` uses to preselect the option and prefill the detail box with the model.
+- Still CSP-safe: no inline scripts or `style=` attributes; all images self-hosted.
+
 ## 2026-09-08 — working quote submission
 
 - Replaced the live page's dead same-page POST and the local email-app handoff with a real same-origin `quote.php` submission to `orders@elysianlabels.co.za`.
