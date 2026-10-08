@@ -754,9 +754,10 @@ ul{margin:0;padding:0;list-style:none}
 .hw-tier{font-family:var(--mono);font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--border);border-radius:2px;padding:.15rem .45rem;white-space:nowrap}
 .hw-card h4{font-family:var(--display);font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin-bottom:var(--s3)}
 .hw-card p{font-size:.875rem;color:var(--ink-soft);margin-bottom:var(--s4)}
-.hw-card .prod-specs{margin-bottom:var(--s4)}
+.hw-card .prod-specs{margin-bottom:var(--s5)}
+.hw-card .prod-specs dd{line-height:1.5}
 .hw-ask{
-  margin-top:auto;font-family:var(--sans);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  font-family:var(--sans);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   text-decoration:none;color:var(--ink);display:inline-flex;gap:var(--s2);align-items:center;
 }
 .hw-ask:hover{color:var(--gold)}
@@ -785,4 +786,10 @@ ul{margin:0;padding:0;list-style:none}
   .hw-teaser-tile span{padding:var(--s2);font-size:.5625rem;letter-spacing:.08em}
   .hw-cat-head{grid-template-columns:1fr}
   .hw-cat-code{grid-row:auto}
+  .hw-cat{padding-top:var(--s6)}
+  .hw-cat + .hw-cat{margin-top:var(--s6)}
+  .hw-grid{gap:var(--s4)}
+  .hw-card .hw-img{aspect-ratio:16/10}
+  .hw-card .hw-img img{padding:5%}
+  .hw-body{padding:var(--s4) var(--s5) var(--s5)}
 }
